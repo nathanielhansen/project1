@@ -7,38 +7,44 @@
 <!DOCTYPE html>
 <html>
 <head>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 <meta charset="ISO-8859-1">
+
+<style>
+.card{
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	padding: 50px;
+}
+</style>
+
 <title>Welcome to Commsult!</title>
 </head>
 <body>
-	<div align="center">
-		<h1>User Login Form</h1>
-		<form action="LoginServlet" method="post" name="login">
-			<table>
-				<tr>
-					<td>email</td>
-					<td>:</td>
-					<td><input type="text" name="username" id="username"/></td>
-				</tr>
-				<tr>
-					<td>password</td>
-					<td>:</td>
-					<td><input type="password" name="password" id="password"/></td>
-				</tr>
-				<tr>
-					<td><input type="button" name="submitBtn" id="submitBtn" value="Login" onclick="checkLogin()"/></td>
-				</tr>
+	<div class="card">
+		<div class="container">
+			<h1>Login</h1>
+			<form action="LoginServlet" method="post" name="login">
+				<div class="form-group mt-5">
+					<label for="username">Username</label>
+				    <input type="text" name="username" id="username" class="form-control" placeholder="Enter username">
+				</div>
+				<div class="form-group">
+				    <label for="password">Password</label>
+				    <input type="password" name="password" id="password" class="form-control" placeholder="Password">
+				</div>
 				<c:if test="${errMsg != null || errMsg != ''}">
-					<tr>
-						<td colspan="3" align="center">
-							<span style="color:red">${errMsg }</span>
-						</td>
-					</tr>
+					<div style="color:red;">${errMsg}</div>
 				</c:if>
-				
-			</table>
-		</form>
+				<input type="button" name="submitBtn" id="submitBtn" value="Login" onclick="checkLogin()" class="btn btn-primary mt-4"/>
+			</form>
+		</div>
 	</div>
+	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 </body>
 <script>
 function checkLogin(){
