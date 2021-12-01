@@ -67,6 +67,9 @@ table#listTable {
 #listTable td:hover {
     cursor: pointer;
 }
+
+.clickable-row{
+}
 </style>
 
 <title>Insert title here</title>
@@ -83,11 +86,11 @@ table#listTable {
 							<th scope="col">Name</th>
 							<th scope="col">Quantity</th>
 							<th scope="col">Price</th>
-							<th scope="col">Action</th>
+							<!-- <th scope="col">Action</th> -->
 						</tr>
 						<c:set var="num" value = "1" scope="page"/>
 						<c:forEach var="item" items="${listStock }">
-							<tr>
+							<tr class="clickable-row" id="update${num}" onclick="buttonPress(${num})">
 								<td>
 									${num}
 									<input type="hidden" value="${item.id}" id="itemId${num}"/>
@@ -104,7 +107,7 @@ table#listTable {
 									${item.price}
 									<input type="hidden" value="${item.price}" id="itemPrice${num}"/>
 								</td>
-								<td style="width: 100px"><input type="button" id="update${num}" value="Update" onclick="buttonPress()" class="btn btn-outline-primary"/></td>
+								<%-- <td style="width: 100px"><input type="button" id="1update${num}" value="Update" onclick="buttonPress()" class="btn btn-outline-primary"/></td> --%>
 								<c:set var="num" value="${num+1}" scope="page"/>
 							</tr>
 						</c:forEach>
@@ -153,14 +156,15 @@ table#listTable {
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 </body>
 <script>
-function buttonPress(){
-	var id = event.srcElement.id
+function buttonPress(x){
+	/* var id = event.srcElement.id
 	var array = id.split("update");
+	alert(x); */
 	
-	var itemId = "itemId" + array[1];
-	var itemName = "itemName" + array[1];
-	var itemQuantity = "itemQuantity" + array[1];
-	var itemPrice = "itemPrice" + array[1];
+	var itemId = "itemId" + x;
+	var itemName = "itemName" + x;
+	var itemQuantity = "itemQuantity" + x;
+	var itemPrice = "itemPrice" + x;
 	
 	document.getElementById("updatedId").value = document.getElementById(itemId).value;
 	document.getElementById("name").value = document.getElementById(itemName).value;
@@ -186,5 +190,11 @@ function buttonPress(){
 	  }
 	}
 }
+
+function cobaNihDiConsole(data){
+	//var id = event.srcElement.id;
+}
+
+
 </script>
 </html>

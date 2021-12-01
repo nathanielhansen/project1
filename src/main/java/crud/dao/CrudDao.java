@@ -125,11 +125,13 @@ public class CrudDao {
 	}
 	
 	public boolean deleteStockById(int id) throws SQLException {
-		boolean stockDeleted;
+		boolean stockDeleted = false;
 		try (Connection connection = getConnection(); PreparedStatement preparedStatement = connection.prepareStatement(DELETE_STOCK);) {
 			preparedStatement.setInt(1, id);
 
 			stockDeleted = preparedStatement.executeUpdate() > 0;
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
 		}
 		return stockDeleted;
 	}
